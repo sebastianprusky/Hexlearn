@@ -1,0 +1,30 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Node / Next.js
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+*.tsbuildinfo
+
+# Local configuration
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Personal captures, recordings, databases, and derived models
+data/
+artifacts/
+
+# Local upstream Hextris copies; recreated with the included preparation scripts
+game/hextris/
+instrumentation/hextris/
+
+# Logs and temporary output
+*.log
+tmp/
