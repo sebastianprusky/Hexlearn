@@ -12,7 +12,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     await chrome.action.setBadgeText({ tabId: tab.id, text: response?.armed ? "ON" : "" });
     await chrome.action.setBadgeBackgroundColor({ tabId: tab.id, color: "#5dd39e" });
   } catch (error) {
-    console.warn("PlayLens content script is unavailable", error);
+    console.warn("Hexlearn content script is unavailable", error);
     await chrome.action.setBadgeText({ tabId: tab.id, text: "!" });
     await chrome.action.setBadgeBackgroundColor({ tabId: tab.id, color: "#e05555" });
   }

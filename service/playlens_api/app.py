@@ -99,7 +99,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     training_coordinator.recover_interrupted(database.usable_run_count())
     runtimes: dict[str, RuntimeSession] = {}
 
-    app = FastAPI(title="PlayLens local API", version="0.3.0")
+    app = FastAPI(title="Hexlearn local API", version="0.3.0")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],

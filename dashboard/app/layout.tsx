@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PlayLens — Playtest diagnostics",
+  title: "Hexlearn — Playtest diagnostics",
   description: "Local, pixel-only personal loss-window forecasting for Hextris.",
 };
 
@@ -14,11 +14,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en">
       <body>
         <header className="site-header">
-          <Link className="wordmark" href="/" aria-label="PlayLens home">
+          <Link className="wordmark" href="/" aria-label="Hexlearn home">
             <span className="wordmark-mark">P</span>
-            <span>PLAYLENS</span>
+            <span>HEXLEARN</span>
           </Link>
-          <nav className="site-nav" aria-label="PlayLens sections">
+          <nav className="site-nav" aria-label="Hexlearn sections">
             <Link href="/">Sessions</Link>
             <Link href="/model">Model Lab</Link>
             <div className="local-chip"><i /> Local only</div>

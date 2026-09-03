@@ -1,7 +1,7 @@
 # Clean local Hextris target
 
 The upstream Hextris repository still exists, but its hosted game redirects to
-an unavailable custom domain. PlayLens therefore uses a clean, local copy for
+an unavailable custom domain. Hexlearn therefore uses a clean, local copy for
 repeatable playtests.
 
 This directory and the instrumented training copy are intentionally separate:
@@ -32,5 +32,5 @@ cd ../..
 PYTHONPATH=service .venv/bin/uvicorn playlens_api.combined:app --host 127.0.0.1 --port 8000
 ```
 
-This serves the game and PlayLens API together. Then open
+This serves the game and Hexlearn API together. Then open
 `http://127.0.0.1:8000` in Chrome.

@@ -26,7 +26,7 @@ LOSS_WINDOW_LABELS = {
 def monotonic_probabilities(values: list[float] | np.ndarray) -> np.ndarray:
     probabilities = np.clip(np.asarray(values, dtype=np.float64), 0.0, 1.0)
     if probabilities.shape != (len(HORIZONS_SECONDS),):
-        raise ValueError("PlayLens expects seven cumulative failure probabilities")
+        raise ValueError("Hexlearn expects seven cumulative failure probabilities")
     return np.maximum.accumulate(probabilities)
 
 

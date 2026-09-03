@@ -21,7 +21,7 @@ function EmptyModelLab() {
   return (
     <main className="message-page">
       <p className="eyebrow">MODEL LAB</p><h1>Waiting for the local API.</h1>
-      <p>Start the combined PlayLens server on port 8000, then refresh this page.</p>
+      <p>Start the combined Hexlearn server on port 8000, then refresh this page.</p>
       <Link className="primary-link" href="/">Return to sessions</Link>
     </main>
   );
@@ -47,7 +47,7 @@ export default async function ModelPage() {
         <div>
           <p className="eyebrow">MODEL LAB / PERSONAL SURVIVAL</p>
           <h1>Fifty clean runs.<br />One honest test.</h1>
-          <p>PlayLens learns only from your quality-gated canvas captures. The final ten runs stay locked until a visual model is ready to prove it beats elapsed time and average duration.</p>
+          <p>Hexlearn learns only from your quality-gated canvas captures. The final ten runs stay locked until a visual model is ready to prove it beats elapsed time and average duration.</p>
         </div>
         <div className={`live-model-state ${status.liveModel.artifactPresent ? "validated" : "experimental"}`}>
           <span>Live overlay</span>

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 PLAYLENS_LOADER = """
-		<!-- PlayLens local fallback waits for the Chrome extension before claiming capture. -->
+		<!-- Hexlearn local fallback waits for the Chrome extension before claiming capture. -->
 		<script src="/playlens/core.js?v=064"></script>
 		<script src="/playlens/local-bootstrap.js?v=064"></script>
 """

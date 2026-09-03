@@ -4,7 +4,7 @@ export const apiBase = process.env.PLAYLENS_API_URL ?? "http://127.0.0.1:8000";
 
 async function request<T>(path: string): Promise<T> {
   const response = await fetch(`${apiBase}${path}`, { cache: "no-store" });
-  if (!response.ok) throw new Error(`PlayLens API returned ${response.status}`);
+  if (!response.ok) throw new Error(`Hexlearn API returned ${response.status}`);
   return response.json() as Promise<T>;
 }
 

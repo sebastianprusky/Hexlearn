@@ -23,7 +23,7 @@ def main() -> None:
             raise SystemExit(f"Could not find </body> in {index}")
         content = content.replace("</body>", f"{SCRIPT_TAG}\n</body>", 1)
         index.write_text(content, encoding="utf-8")
-    print(f"Installed PlayLens telemetry bridge in {target}")
+    print(f"Installed Hexlearn telemetry bridge in {target}")
 
 
 if __name__ == "__main__":

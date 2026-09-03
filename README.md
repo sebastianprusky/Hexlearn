@@ -1,6 +1,6 @@
 # Hexlearn
 
-Hexlearn contains PlayLens, a local-first Hextris playtesting prototype that learns a personal
+Hexlearn is a local-first Hextris playtesting prototype that learns a personal
 loss-window forecast from canvas pixels. It captures clean runs first, trains
 scikit-learn and PyTorch survival models locally, and only shows forecasts after
 the visual model beats elapsed-time and average-duration shortcuts on ten locked
@@ -13,7 +13,7 @@ The live states are intentionally simple:
 - `RUN ACCEPTED · 12 / 50 usable` or a specific exclusion reason at game over.
 - `NO FAILURE SIGNAL` or `LOSS LIKELY IN …` after a model is promoted.
 
-PlayLens never claims to detect boredom, emotion, attention, or player intent.
+Hexlearn never claims to detect boredom, emotion, attention, or player intent.
 Read [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) before changing product or ML
 direction; it is the living source of truth.
 
@@ -38,7 +38,7 @@ python3 -m venv .venv
 PYTHONPATH=service .venv/bin/uvicorn playlens_api.combined:app --host 127.0.0.1 --port 8000
 ```
 
-Open `http://127.0.0.1:8000`. The local server injects and arms the PlayLens
+Open `http://127.0.0.1:8000`. The local server injects and arms the Hexlearn
 capture controller directly, so collection works even when Chrome does not
 activate the unpacked extension. Press Hextris's Play button and play normally.
 If the ignored clean game copy is missing, follow `game/README.md` once.
@@ -53,7 +53,7 @@ claim it, and a shared DOM lock prevents two capture sessions.
 2. Enable Developer mode.
 3. Load `playlens/extension`, or click **Reload** if it is already installed.
 4. Return to `http://127.0.0.1:8000` and refresh the page.
-5. Click **Enable PlayLens**, then play normally.
+5. Click **Enable Hexlearn**, then play normally.
 
 Version `0.6.4` uses the Play-button interaction and visible Hextris play controls as its primary start and
 game-over signals and canvas motion only as a start fallback. It does not treat

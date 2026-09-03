@@ -130,7 +130,7 @@
           button:hover { background:rgba(24,31,33,.94); }
           i { width:7px; height:7px; border-radius:50%; background:#5dd39e; box-shadow:0 0 0 4px rgba(93,211,158,.12); }
         </style>
-        <button type="button" aria-label="Enable PlayLens capture"><i></i>Enable PlayLens</button>`;
+        <button type="button" aria-label="Enable Hexlearn capture"><i></i>Enable Hexlearn</button>`;
       shadow.querySelector("button").addEventListener("click", () => void this.arm());
       document.documentElement.appendChild(host);
       this.launcher = host;
@@ -285,7 +285,7 @@
       } catch (_) {
         this.activeSegmentStartedAt = null;
         this.detector.reset();
-        this.render({ status: "unavailable", unavailableReason: "Start the local PlayLens service" });
+        this.render({ status: "unavailable", unavailableReason: "Start the local Hexlearn service" });
       }
     }
 
@@ -367,7 +367,7 @@
         this.recorder.ondataavailable = (event) => { if (event.data.size) this.recordingChunks.push(event.data); };
         this.recorder.start(1000);
       } catch (error) {
-        console.warn("PlayLens recording unavailable", error);
+        console.warn("Hexlearn recording unavailable", error);
       }
     }
 
@@ -382,7 +382,7 @@
         try {
           await fetch(`${API_BASE}/sessions/${sessionId}/recording`, { method: "POST", headers: { "Content-Type": blob.type }, body: blob });
         } catch (error) {
-          console.warn("PlayLens could not save the local recording", error);
+          console.warn("Hexlearn could not save the local recording", error);
         }
       };
       recorder.stop();
@@ -430,8 +430,8 @@
           .status { color:#c7cecb; font-size:12px; line-height:1.45; }
           .report { width:100%; margin-top:3px; padding:9px 10px; border-radius:9px; background:#f2f0e8; color:#141817; font-size:11px; font-weight:800; }
         </style>
-        <section class="card" data-state="clear" aria-live="polite" aria-label="PlayLens loss-window forecast">
-          <header class="head"><span class="brand">PLAYLENS</span><span class="mode">COLLECTION</span><button class="pl-collapse" type="button" aria-label="Collapse PlayLens">−</button></header>
+        <section class="card" data-state="clear" aria-live="polite" aria-label="Hexlearn loss-window forecast">
+          <header class="head"><span class="brand">HEXLEARN</span><span class="mode">COLLECTION</span><button class="pl-collapse" type="button" aria-label="Collapse Hexlearn">−</button></header>
           <div class="body"><div class="status">Waiting for a new run</div></div>
         </section>`;
       document.documentElement.appendChild(host);

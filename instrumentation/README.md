@@ -15,7 +15,7 @@ cd hextris
 python3 -m http.server 8001 --bind 127.0.0.1
 ```
 
-With the combined PlayLens server running on port `8000`, open
+With the combined Hexlearn server running on port `8000`, open
 `http://127.0.0.1:8001`. Each run creates a
 local smoke-test session containing 4 FPS canvas frames and matching objective
 telemetry. Add `?playlensBot=1&runs=25&seed=7` to make the local policy bot

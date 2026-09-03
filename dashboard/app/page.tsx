@@ -35,7 +35,7 @@ export default async function Home() {
         <aside className="model-card">
           <span className="model-label">Inference status</span>
           <strong>{connected ? "Service connected" : "Service offline"}</strong>
-          <p>{connected ? "Collection, model training, and recordings stay on this computer." : "Start the combined PlayLens server on port 8000."}</p>
+          <p>{connected ? "Collection, model training, and recordings stay on this computer." : "Start the combined Hexlearn server on port 8000."}</p>
           <span className={connected ? "status-line ready" : "status-line offline"}><i /> {connected ? "Ready to collect a run" : "Waiting for API"}</span>
           <Link className="model-link" href="/model">Open Model Lab <span>↗</span></Link>
         </aside>
@@ -51,7 +51,7 @@ export default async function Home() {
           <div className="empty-state">
             <div className="empty-hex">⌁</div>
             <h3>No playtests yet</h3>
-            <p>Open Hextris, click the PlayLens extension, and begin a run. The first report appears here automatically.</p>
+            <p>Open Hextris, click the Hexlearn extension, and begin a run. The first report appears here automatically.</p>
             <code>http://127.0.0.1:8000</code>
           </div>
         ) : (

@@ -57,7 +57,7 @@
 
   const renderStatus = (message) => {
     const runLabel = automated ? `${Math.min(completedRuns + 1, targetRuns)} / ${targetRuns} · ${currentPolicy}` : "manual";
-    status.innerHTML = `<strong style="display:block;margin-bottom:3px">PlayLens collector</strong>
+    status.innerHTML = `<strong style="display:block;margin-bottom:3px">Hexlearn collector</strong>
       <span style="color:#aebdb7">Run ${runLabel} &middot; ${message}</span>`;
   };
 
@@ -89,7 +89,7 @@
         seed: automated ? currentSeed : null,
       }),
     });
-    if (!response.ok) throw new Error(`PlayLens training start failed: ${response.status}`);
+    if (!response.ok) throw new Error(`Hexlearn training start failed: ${response.status}`);
     trainingId = (await response.json()).id;
     renderStatus("capturing labels");
   };
@@ -99,7 +99,7 @@
     trainingId = null;
     if (!id) return;
     const response = await fetch(`${API}/sessions/${id}/finish`, { method: "POST" });
-    if (!response.ok) throw new Error(`PlayLens training finish failed: ${response.status}`);
+    if (!response.ok) throw new Error(`Hexlearn training finish failed: ${response.status}`);
     completedRuns += 1;
     renderStatus(completedRuns >= targetRuns ? "collection complete" : "run saved");
   };
@@ -201,7 +201,7 @@
             score: Math.max(0, Number(window.score) || 0),
           }),
         });
-        if (!response.ok) throw new Error(`PlayLens training frame failed: ${response.status}`);
+        if (!response.ok) throw new Error(`Hexlearn training frame failed: ${response.status}`);
       } finally {
         uploadInFlight = false;
       }

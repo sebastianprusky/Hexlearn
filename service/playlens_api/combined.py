@@ -13,7 +13,7 @@ GAME_DIR = Path(__file__).resolve().parents[2] / "game" / "hextris"
 EXTENSION_DIR = Path(__file__).resolve().parents[2] / "extension"
 if not (GAME_DIR / "index.html").exists():
     raise RuntimeError(
-        "Clean Hextris copy is missing. Follow playlens/game/README.md before starting PlayLens."
+        "Clean Hextris copy is missing. Follow playlens/game/README.md before starting Hexlearn."
     )
 
 app = create_app()

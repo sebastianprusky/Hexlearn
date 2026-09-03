@@ -1,4 +1,4 @@
-# PlayLens project context
+# Hexlearn project context
 
 Read this file before making product, ML, data, or interface changes. Update the
 Current status, Decisions, Change log, and Next milestone sections after every
@@ -6,14 +6,14 @@ material change.
 
 ## Product purpose
 
-PlayLens is a local-first playtesting tool that tests whether Hextris canvas
+Hexlearn is a local-first playtesting tool that tests whether Hextris canvas
 pixels can forecast a specific player's loss window before simple elapsed-time
 and average-run shortcuts can. It is a developer-facing diagnostic prototype,
 not a competitive assistant, emotion detector, or boredom detector.
 
 The portfolio claim must remain evidence-based:
 
-> PlayLens evaluates whether a personal temporal vision model can forecast a
+> Hexlearn evaluates whether a personal temporal vision model can forecast a
 > Hextris loss at least 15 seconds ahead while outperforming elapsed-time,
 > average-duration, and board-occupancy baselines on locked future runs.
 
@@ -148,7 +148,7 @@ Model Lab. More data cannot be described as success by itself.
   authoritative in-progress signal and keeps direct canvas motion as fallback.
 - Local controller ownership made the Chrome toolbar toggle target an inactive
   extension-world controller. Version 0.6.3 auto-arms on the dedicated local
-  PlayLens game and treats the visible Play-button interaction as a direct start
+  Hexlearn game and treats the visible Play-button interaction as a direct start
   signal, while preserving pause-control and motion fallbacks.
 - Leaving and returning through Chrome's back/forward cache then exposed stale
   detector state after a navigation-finished session. Version 0.6.4 resets the

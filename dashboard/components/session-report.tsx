@@ -150,7 +150,7 @@ export default function SessionReport({ session, apiBase }: { session: SessionDe
         </div>
       </section>
 
-      <footer className="report-footer"><p>{session.validFrameCount} / {session.expectedFrameCount} frames · {session.lifecycleEvents.filter((event) => event.state === "paused").length} pause{session.lifecycleEvents.filter((event) => event.state === "paused").length === 1 ? "" : "s"} excluded from active time · {stats.falseEarly} false early warning{stats.falseEarly === 1 ? "" : "s"} · {stats.latency === null ? "No inference" : `${Math.round(stats.latency)} ms p95`}.</p><p>Raw gameplay and model outputs remain in the local PlayLens data directory.</p></footer>
+      <footer className="report-footer"><p>{session.validFrameCount} / {session.expectedFrameCount} frames · {session.lifecycleEvents.filter((event) => event.state === "paused").length} pause{session.lifecycleEvents.filter((event) => event.state === "paused").length === 1 ? "" : "s"} excluded from active time · {stats.falseEarly} false early warning{stats.falseEarly === 1 ? "" : "s"} · {stats.latency === null ? "No inference" : `${Math.round(stats.latency)} ms p95`}.</p><p>Raw gameplay and model outputs remain in the local Hexlearn data directory.</p></footer>
     </>
   );
 }

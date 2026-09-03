@@ -1,1 +1,1 @@
-"""Training and evaluation tools for PlayLens."""
+"""Training and evaluation tools for Hexlearn."""

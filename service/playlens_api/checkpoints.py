@@ -17,7 +17,7 @@ def create_collection_checkpoint(data_dir: Path, artifacts_dir: Path, usable_run
         return None
     database_path = data_dir / "playlens.sqlite3"
     if not database_path.exists():
-        raise FileNotFoundError("PlayLens database is missing")
+        raise FileNotFoundError("Hexlearn database is missing")
 
     checkpoint_root = artifacts_dir / "checkpoints"
     destination = checkpoint_root / f"run-{usable_runs:03d}"
