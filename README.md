@@ -6,12 +6,16 @@ have not established a model suitable for live warnings.
 
 ## Current research status
 
-The latest offline experiment targets warnings **2–5 seconds before loss**.
-It stopped at its predeclared timing checkpoint: one recording has an overly
-wide loss-time interval and two end before a visible loss transition. No
-short-horizon model was trained, and this does not establish that imminent loss
-is unpredictable. See the [experiment findings](ml/playlens_ml/imminent_loss/RESULTS.md)
-and [reproduction instructions](ml/playlens_ml/imminent_loss/README.md).
+The current research target is warnings **2–5 seconds before loss**. The original
+30-run experiment stopped at its timing checkpoint. A separately authorized
+27-run follow-up passed 64 alignment checks but failed near-loss extraction
+review: at least 10 of 81 frames were incorrect or uncertain, putting the best
+possible correct fraction at 87.7%, below the required 90%.
+
+No short-horizon model was trained, and these results do not establish that
+imminent loss is unpredictable. See the [latest findings](ml/playlens_ml/imminent_loss_27/RESULTS.md),
+[reproduction instructions](ml/playlens_ml/imminent_loss_27/README.md), and
+[preserved original timing report](ml/playlens_ml/imminent_loss/RESULTS.md).
 
 Runs 1–30 are the development cohort. Runs 31–40 have already been examined in
 historical work; they are excluded from current experiments and are not a fresh

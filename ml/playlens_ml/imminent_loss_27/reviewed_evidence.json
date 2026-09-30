@@ -1,0 +1,7 @@
+{
+  "schema": "imminent-loss-27-v1",
+  "auditSha256": "ef03ec0621fe8ddbdc80d52e002de9127354bc8712fdca04ded8ff2a7c936c47",
+  "protocolSha256": "4d50de9dbfe352e2a54624bf0a54cf92dbf4b96781ef85d0ced046acc819c1e3",
+  "issuesSha256": "a7ee071ace2cc860a833fbb1996e8000fe5f9c44066929cb20f406fcef0fb2e9",
+  "reviewer": "assistant visual review of all 81 board panels and all 81 incoming panels; not independent ground truth"
+}

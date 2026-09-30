@@ -415,3 +415,22 @@ See `ml/playlens_ml/imminent_loss/README.md` for the approved protocol and
 `RESULTS.md` in that directory for the report. Do not resume model tuning or
 claim a validated warning system from these results. Any later study needs a
 separate explicit scope; the current experiment does not enable live warnings.
+
+## Authorized 27-run follow-up
+
+The user explicitly authorized excluding runs 5, 14 and 17 for a separate
+exploratory study. `imminent-loss-27-v1` retains the original numerical run/fold
+boundaries, four candidate definitions, baselines, warning rules and thresholds.
+No further exclusions were made and historical runs 31–40 remain unused.
+
+All 64 checked video/observation alignments passed. All 81 near-loss extraction
+panels were inspected with additional incoming-block overlays. Four definite
+incoming-block errors and six uncertifiable stack/color assignments imply an
+optimistic correct-frame upper bound of 71/81 (87.7%), below the required 90%.
+The extractor marked all 81 frames valid, so validity flags alone were inadequate.
+
+This follow-up is closed at extraction review. Dataset/model/warning evaluation
+was not run, and no new runs, repair loop or live warnings were enabled. See
+`ml/playlens_ml/imminent_loss_27/RESULTS.md`. Timing is no longer the identified
+blocker in this subset; reliable block separation through clears and rotations
+remains unresolved. Predictive usefulness is still untested at this horizon.
