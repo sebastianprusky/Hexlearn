@@ -14,6 +14,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, HttpUrl
 
 from .database import Database
+from .collection_policy import PERSONAL_TARGET
 from .features import InvalidFrame, extract_frame_features
 from .inference import Predictor, RuntimeSession
 from .insights import derive_insights
@@ -158,7 +159,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "status": "active",
             "mode": "live" if predictor.artifact is not None else "collection",
             "collectionRunNumber": collection_run_number,
-            "collectionTarget": 50,
+            "collectionTarget": PERSONAL_TARGET,
             "modelVersion": predictor.model_version,
         }
 
@@ -182,23 +183,21 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         runtime.previous_gray = frame.gray
         runtime.active_elapsed_ms = max(runtime.active_elapsed_ms, payload.activeElapsedMs)
         runtime.frames.append((payload.activeElapsedMs, frame.vector))
-        runtime.valid_frames += 1
-        if payload.activeElapsedMs - runtime.last_saved_active_ms >= 240:
-            session_path = settings.data_dir / "sessions" / session_id
-            frame_path = session_path / "frames" / f"{payload.timestampMs}.jpg"
-            frame_path.write_bytes(frame.jpeg_bytes)
-            with (session_path / "observations.jsonl").open("a", encoding="utf-8") as stream:
-                stream.write(
-                    json.dumps(
-                        {
-                            "timestampMs": payload.timestampMs,
-                            "activeElapsedMs": payload.activeElapsedMs,
-                            "observedMotion": payload.observedMotion,
-                        }
-                    )
-                    + "\n"
+        session_path = settings.data_dir / "sessions" / session_id
+        frame_path = session_path / "frames" / f"{payload.timestampMs}.jpg"
+        frame_path.write_bytes(frame.jpeg_bytes)
+        with (session_path / "observations.jsonl").open("a", encoding="utf-8") as stream:
+            stream.write(
+                json.dumps(
+                    {
+                        "timestampMs": payload.timestampMs,
+                        "activeElapsedMs": payload.activeElapsedMs,
+                        "observedMotion": payload.observedMotion,
+                    }
                 )
-            runtime.last_saved_active_ms = payload.activeElapsedMs
+                + "\n"
+            )
+        runtime.valid_frames += 1
         prediction = predictor.prediction(runtime, payload.timestampMs, payload.activeElapsedMs)
         database.save_prediction(session_id, prediction)
         return prediction
@@ -223,7 +222,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         active_duration_ms = max(payload.activeElapsedMs, runtime.active_elapsed_ms if runtime else 0)
         valid_frames = runtime.valid_frames if runtime else 0
         expected_frames = max(1, round(active_duration_ms / 250))
-        coverage = valid_frames / expected_frames
+        coverage = min(1.0, valid_frames / expected_frames)
         if payload.reason != "game_over":
             quality_reason = f"excluded: {payload.reason}"
         elif active_duration_ms < 8_000:
@@ -263,7 +262,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "usableForTraining": usable,
             "qualityReason": quality_reason,
             "usableRuns": usable_runs,
-            "collectionTarget": 50,
+            "collectionTarget": PERSONAL_TARGET,
             "validFrameCount": valid_frames,
             "expectedFrameCount": expected_frames,
             "captureCoverage": coverage,

@@ -29,7 +29,7 @@
       this.lastPrediction = null;
       this.launcher = null;
       this.collectionRunNumber = null;
-      this.collectionTarget = 50;
+      this.collectionTarget = 40;
       this.sessionMode = "collection";
       this.paused = false;
       this.activeAccumulatedMs = 0;
@@ -150,7 +150,9 @@
     }
 
     gameIsOver() {
-      return this.isVisible("#gameoverscreen");
+      // Hextris keeps the outer game-over wrapper rendered on the start screen.
+      // The score container is the visible UI that appears only at game over.
+      return this.isVisible("#gameoverscreen #container");
     }
 
     gameIsPaused() {
@@ -278,7 +280,7 @@
         const session = await response.json();
         this.sessionId = session.id;
         this.collectionRunNumber = session.collectionRunNumber;
-        this.collectionTarget = session.collectionTarget || 50;
+        this.collectionTarget = session.collectionTarget || 40;
         this.sessionMode = session.mode || "collection";
         this.render(this.sessionMode === "collection" ? this.collectionStatus() : { status: "warming_up" });
         this.startRecording(canvas);

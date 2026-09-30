@@ -1,16 +1,28 @@
 # Hexlearn
 
-Hexlearn is a local-first Hextris playtesting prototype that learns a personal
-loss-window forecast from canvas pixels. It captures clean runs first, trains
-scikit-learn and PyTorch survival models locally, and only shows forecasts after
-the visual model beats elapsed-time and average-duration shortcuts on ten locked
-future runs.
+Hexlearn is a local-first Hextris research prototype that records canvas pixels
+and tests whether they can warn of an approaching loss. Existing experiments
+have not established a model suitable for live warnings.
+
+## Current research status
+
+The latest offline experiment targets warnings **2–5 seconds before loss**.
+It stopped at its predeclared timing checkpoint: one recording has an overly
+wide loss-time interval and two end before a visible loss transition. No
+short-horizon model was trained, and this does not establish that imminent loss
+is unpredictable. See the [experiment findings](ml/playlens_ml/imminent_loss/RESULTS.md)
+and [reproduction instructions](ml/playlens_ml/imminent_loss/README.md).
+
+Runs 1–30 are the development cohort. Runs 31–40 have already been examined in
+historical work; they are excluded from current experiments and are not a fresh
+independent test. Older collection/training commands below retain their original
+split and production behavior. Recordings and model artifacts remain local.
 
 The live states are intentionally simple:
 
-- `CAPTURING RUN 12 / 50` while building the first personal dataset.
+- `CAPTURING RUN 12 / 40` while building the first personal dataset.
 - `PAUSED` while Hextris or the browser tab is paused.
-- `RUN ACCEPTED · 12 / 50 usable` or a specific exclusion reason at game over.
+- `RUN ACCEPTED · 12 / 40 usable` or a specific exclusion reason at game over.
 - `NO FAILURE SIGNAL` or `LOSS LIKELY IN …` after a model is promoted.
 
 Hexlearn never claims to detect boredom, emotion, attention, or player intent.
@@ -70,23 +82,26 @@ cd playlens/dashboard
 ```
 
 Open `http://localhost:3001`; Model Lab is at `/model`. It shows usable and
-excluded runs, the 40/10 split, local training jobs, model gates, and why a
+excluded runs, the 30/10 split, local training jobs, model gates, and why a
 candidate remains held back.
 
 ## Personal training workflow
 
-- Only extension 0.6.4 `collection-v3` runs count toward the official fifty.
+- Only extension 0.6.4 `collection-v3` runs count toward the initial forty.
   Legacy sessions remain visible but are archived outside the cohort.
 - Runs must end at confirmed game over, contain at least eight active seconds,
   retain at least 75% expected frame coverage, and have enough valid frames.
-- Runs 1–40 form the development set. Runs 41–50 are the locked future test.
-- Automatic local jobs run at 20, 25, 30, 35, 40, and 50 usable runs.
+- Runs 1–30 form the development set. Runs 31–40 are the locked future test.
+- Automatic local jobs run at 20, 25, 30, and 40 usable runs.
 - Complete local checkpoints containing the cohort database, manifest, frames,
-  and recordings are created at runs 20, 40, and 50. Interrupted milestone jobs
+  and recordings are created at runs 20, 30, and 40. Interrupted milestone jobs
   retry automatically when the API restarts.
 - The main visual models never receive score, elapsed time, average duration, or
   Hextris state. Those values exist only in shortcut baselines and labels.
 - Bot runs never enter personal fitting, selection, or evaluation.
+- Later runs are still recorded, but automatic training uses only the initial 40.
+  A future model can reuse those captures with a new independent evaluation;
+  runs used to train that version cannot also be its held-out test.
 - ML frames remain at 4 FPS. Session replay recording uses 15 FPS at 900 Kbps
   and reusable capture canvases to minimize gameplay overhead.
 

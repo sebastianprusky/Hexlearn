@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 from sklearn.metrics import brier_score_loss, roc_auc_score
+from playlens_api.collection_policy import PERSONAL_TARGET, DEVELOPMENT_RUNS, FIT_RUNS, LOCKED_TEST_RUNS
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,10 +29,12 @@ def session_split(session_ids: np.ndarray) -> Split:
     unique = list(dict.fromkeys(session_ids.tolist()))
     if len(unique) < 7:
         raise ValueError("At least seven complete sessions are required for leakage-safe splits")
-    if len(unique) >= 50:
-        train_sessions = set(unique[:32])
-        validation_sessions = set(unique[32:40])
-        test_sessions = set(unique[40:50])
+    if len(unique) >= DEVELOPMENT_RUNS:
+        train_sessions = set(unique[:FIT_RUNS])
+        validation_sessions = set(unique[FIT_RUNS:DEVELOPMENT_RUNS])
+        # At 30 runs, calibration provides provisional diagnostics only.
+        # Future test runs never enter fitting or calibration.
+        test_sessions = set(unique[DEVELOPMENT_RUNS:PERSONAL_TARGET]) if len(unique) > DEVELOPMENT_RUNS else validation_sessions
     else:
         train_end = max(1, int(len(unique) * 0.70))
         validation_end = min(max(train_end + 1, int(len(unique) * 0.85)), len(unique) - 1)
@@ -184,7 +187,7 @@ def promotion_gates(metrics: dict[str, object], total_runs: int) -> dict[str, bo
     brier = metrics.get("brierImprovements", {})
     time_improvements = metrics.get("timeToFailureImprovements", {})
     return {
-        "lockedTestComplete": total_runs >= 50 and int(metrics.get("evaluatedRuns", 0)) >= 10,
+        "lockedTestComplete": total_runs >= PERSONAL_TARGET and int(metrics.get("evaluatedRuns", 0)) == LOCKED_TEST_RUNS,
         "brierVsElapsed": float(brier.get("elapsed_time_only", 0.0)) >= 0.10,
         "brierVsAverageDuration": float(brier.get("average_duration", 0.0)) >= 0.10,
         "timeMaeVsElapsed": float(time_improvements.get("elapsed_time_only", 0.0)) >= 0.10,
@@ -196,7 +199,7 @@ def promotion_gates(metrics: dict[str, object], total_runs: int) -> dict[str, bo
     }
 
 
-def eligible(metrics: dict[str, object], total_runs: int = 50) -> bool:
+def eligible(metrics: dict[str, object], total_runs: int = PERSONAL_TARGET) -> bool:
     return all(promotion_gates(metrics, total_runs).values())
 
 

@@ -1,0 +1,669 @@
+{
+  "schema": "imminent-loss-v1",
+  "reviewer": "assistant visual review; not independent human ground truth",
+  "manifestSha256": "f19e91b6f6e6c9a0e81555ea1ac4ca74e8127b0fc34f3fa9b76fcf31bb15d474",
+  "runs": [
+    {
+      "run": 1,
+      "videoSha256": "d4d2a893e5968288e4ba96bdf577f998c14b94dc5ca85dbe02fed72cb21a7ed4",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        128.19799999999998,
+        128.239
+      ],
+      "lastSavedVideoSeconds": 128.39999999999998,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-01-frames/0291.png",
+          "sha256": "2e86ed5bc1e0f2b8d6faa21e275062c401c01f10ce93b80638cbb87911a7a5b6"
+        },
+        {
+          "path": "review/run-01-frames/0292.png",
+          "sha256": "f676002579e67efcf9a001b31120eafbfe40ec3c3f300e8e40c173777625b8f7"
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "videoSha256": "4235f7667763bf56ce5cafab8893e371a2989ebb9cb9a39eb3bef258eb9d4884",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        191.19899999999998,
+        191.262
+      ],
+      "lastSavedVideoSeconds": 191.39499999999998,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-02-frames/0146.png",
+          "sha256": "396f0c0f816347641e02f6b130de87032144feed8a00a0a5ee4862234f354536"
+        },
+        {
+          "path": "review/run-02-frames/0147.png",
+          "sha256": "9522354c6f352a583b4ad80f3595d23390f01367948c26b9ecfd7173ac931a68"
+        }
+      ]
+    },
+    {
+      "run": 3,
+      "videoSha256": "d2781d9a7f6321b2b1917d6d695cf5a0a82a2aa457207e3f2b1d6aa3990dec44",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        137.055,
+        137.139
+      ],
+      "lastSavedVideoSeconds": 137.188,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-03-frames/0148.png",
+          "sha256": "d2b1f0bcd68cba140633c023a035ebaa27161a204d3d99cf8aa2183c97ce7abb"
+        },
+        {
+          "path": "review/run-03-frames/0149.png",
+          "sha256": "3702472625464fe81462420312a955e801ed784d8e0fe3cf9118620b88acd9cb"
+        }
+      ]
+    },
+    {
+      "run": 4,
+      "videoSha256": "7a7cd8678187acd401607343a72ff2f4ca59bdcc60d9fdf9f4a2db9874e8847f",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        170.408,
+        170.475
+      ],
+      "lastSavedVideoSeconds": 170.67499999999998,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-04-frames/0145.png",
+          "sha256": "16acb6f62eb2c9d8c9658998476d1e448fa70b3a895278c037be935cfe1feeda"
+        },
+        {
+          "path": "review/run-04-frames/0146.png",
+          "sha256": "68a191788a2f704a27fdd861e18d2d8b76669dfc76cc973412cdaf09fee0b779"
+        }
+      ]
+    },
+    {
+      "run": 5,
+      "videoSha256": "20ca058f056cb04621af748f0da114bd56ecd17352b5afcd774b673540459181",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        161.42600000000002,
+        161.768
+      ],
+      "lastSavedVideoSeconds": 161.957,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-05-frames/0142.png",
+          "sha256": "da55b5a4fd6efef90ab3013552a5d72a0d7808d74f7386c9d651d7f66ee03f74"
+        },
+        {
+          "path": "review/run-05-frames/0143.png",
+          "sha256": "ac03b15fbca1a5834e03d7fc9a712826a2947d2d164445d61132ae34fe05424f"
+        }
+      ]
+    },
+    {
+      "run": 6,
+      "videoSha256": "c3ffdebf981a68b51defca092cd31f0ea3ed96766b5bb986c0a51c41f0169e8d",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        107.864,
+        107.94800000000001
+      ],
+      "lastSavedVideoSeconds": 108.131,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-06-frames/0144.png",
+          "sha256": "cf42ff5a71384de1ccde045dae92276f8446874e4485e21536966828b4dc35c2"
+        },
+        {
+          "path": "review/run-06-frames/0145.png",
+          "sha256": "f1a8d6771948c5f32229ca2b05d8739ac4549fd2956e23ca729f3c7579d0915e"
+        }
+      ]
+    },
+    {
+      "run": 7,
+      "videoSha256": "b88dd3b98547a45c6ffdec3d04e1e9aca715dd9a718e7da968f7df004c62211c",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        140.80100000000002,
+        140.883
+      ],
+      "lastSavedVideoSeconds": 140.93300000000002,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-07-frames/0148.png",
+          "sha256": "f0494648f7d971484addea33f22cb6cfa4e2359a5d1a362986471b75bd8b6189"
+        },
+        {
+          "path": "review/run-07-frames/0149.png",
+          "sha256": "1ef81b3343829b3f063767091a801ff729631572783154f297c8aaf92524c455"
+        }
+      ]
+    },
+    {
+      "run": 8,
+      "videoSha256": "621fbdf6543cc54bc79b766a1335c4277533fd0b6fd11c666fa24d7121b73145",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        110.26599999999999,
+        110.333
+      ],
+      "lastSavedVideoSeconds": 110.399,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-08-frames/0147.png",
+          "sha256": "96a693203d55f551937067dfab1b94c203d30f3e35c121fb388f89d2a8dc54a2"
+        },
+        {
+          "path": "review/run-08-frames/0148.png",
+          "sha256": "f0b881780966f78881be7a6a648133e384e51220d21682b17f749f777f6f575b"
+        }
+      ]
+    },
+    {
+      "run": 9,
+      "videoSha256": "c26daf0eb4a70161e5f868badf02b60b34803ed893942337ab6b28457f82b001",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        180.332,
+        180.399
+      ],
+      "lastSavedVideoSeconds": 180.399,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-09-frames/0148.png",
+          "sha256": "23ca20f4c2b93f1cbf1569c6ad5d4a640c34ad9bddcd5d696e3fd6cb6cb05d47"
+        },
+        {
+          "path": "review/run-09-frames/0149.png",
+          "sha256": "0feb90d42cc001d778e2cfe4f92296f51f184199dce30ee4c487dc6231b10a7b"
+        }
+      ]
+    },
+    {
+      "run": 10,
+      "videoSha256": "1e0358d685832916c9279fa331bd766a7363ba4879326a9215afd5fa9341f447",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        193.628,
+        193.694
+      ],
+      "lastSavedVideoSeconds": 193.694,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-10-frames/0149.png",
+          "sha256": "1b2a5e669a23dbc5e1b532f8f83737782cf54332a41641e2955a7911b43f0e7e"
+        },
+        {
+          "path": "review/run-10-frames/0150.png",
+          "sha256": "f53d2ee6948a2bb7e5708006cc48411b8fddcfd2a9be2673536847519aa02dc9"
+        }
+      ]
+    },
+    {
+      "run": 11,
+      "videoSha256": "c02aa0df612227f40c0fde6ae9acdce21e1b00ef3b5195c8fbdbc2e071d614f1",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        148.668,
+        148.732
+      ],
+      "lastSavedVideoSeconds": 148.93200000000002,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-11-frames/0146.png",
+          "sha256": "5324fe80b6b3247aa21137bc4e75c2059cff85cc0d032e35c2dfe471e6a5d6e5"
+        },
+        {
+          "path": "review/run-11-frames/0147.png",
+          "sha256": "ea2d030fd71d32bda3771893518ca9d5f4a3f0920aa76066b1fa3e5f8b350bd3"
+        }
+      ]
+    },
+    {
+      "run": 12,
+      "videoSha256": "dfa6505dd39670769178d3c68e2f5492af830c4c9232103ea17fbae6d609f6b8",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        165.265,
+        165.332
+      ],
+      "lastSavedVideoSeconds": 165.399,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-12-frames/0146.png",
+          "sha256": "d7f8813c28962b3e05cfa0087eb70391f7237b26d8f1e0803bd29b1fa65b249f"
+        },
+        {
+          "path": "review/run-12-frames/0147.png",
+          "sha256": "153d1a4192b1eac4b3044a73fdf536b77352b33e7ebdb61d582134db4abe53aa"
+        }
+      ]
+    },
+    {
+      "run": 13,
+      "videoSha256": "21697d5ebc33ccb914c42b960599f5fa7e7b36951369a9c2728d66085d4362c9",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        168.069,
+        168.149
+      ],
+      "lastSavedVideoSeconds": 168.199,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-13-frames/0148.png",
+          "sha256": "c0e31fda6a2505317b3184842d54259c4f28aa11568ef18be64bcee3cd162186"
+        },
+        {
+          "path": "review/run-13-frames/0149.png",
+          "sha256": "89887d481d326f166e30f2acb14b42046f176ea913cc9de7768431960fa6ce95"
+        }
+      ]
+    },
+    {
+      "run": 14,
+      "videoSha256": "b8ea010878ff4c63ae472b2872d31b6de721cd18516bdbcad6df77bc6d3d57ab",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": null,
+      "lastSavedVideoSeconds": 164.864,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-14-frames/0145.png",
+          "sha256": "f74fdcda80b8d4a51de4814818ebf9a588383e3d3cfc0f10ab30f9dbebbfa140"
+        },
+        {
+          "path": "review/run-14-frames/0146.png",
+          "sha256": "007d658df6d056ea499f682d05e30408a52962c60c568798292a2014ab158caf"
+        },
+        {
+          "path": "review/run-14-native-tail.jpg",
+          "sha256": "e07fff62d2a90120eabc99b5801d808e55c9022be6f6748e31e7e1b04d7e11e6"
+        }
+      ]
+    },
+    {
+      "run": 15,
+      "videoSha256": "6f9a4dccf240bb32b8ce2bd72a3c95778ac26e3b58d0a06a0a43288d3edb22c2",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        187.60199999999998,
+        187.666
+      ],
+      "lastSavedVideoSeconds": 187.666,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-15-frames/0148.png",
+          "sha256": "998feb212981e8db586127d33d07217e3551b01f33aa8735a7cb2ef601fa1312"
+        },
+        {
+          "path": "review/run-15-frames/0149.png",
+          "sha256": "99199479e66ac04a906d42d3f247ad9124047b65259eae33498c1766776f4cad"
+        }
+      ]
+    },
+    {
+      "run": 16,
+      "videoSha256": "729a446c12c6022ca17a8a852a18f55d9a0d3f3703b26dc24d130abb541dd6ce",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        166.336,
+        166.399
+      ],
+      "lastSavedVideoSeconds": 166.399,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-16-frames/0148.png",
+          "sha256": "75925989adfab0513f498c2033f7c70c1d7495b3a5d3b39d1233a7b906672e76"
+        },
+        {
+          "path": "review/run-16-frames/0149.png",
+          "sha256": "2e48534ec1211820cef78492063dda247f016653044ac9e90d695a636b6190fd"
+        }
+      ]
+    },
+    {
+      "run": 17,
+      "videoSha256": "1d61b2d67dc0dc79891f5e4d3561d16837b643f026dff410d06ce2c5f4f008ca",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": null,
+      "lastSavedVideoSeconds": 180.401,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-17-frames/0148.png",
+          "sha256": "9645daf11afa8f697cceb7e36fbf5f57ab365d86404eca9f6dc8db71024e93ec"
+        },
+        {
+          "path": "review/run-17-frames/0149.png",
+          "sha256": "0231d44f015d155e7bf740f02f25fd0920b1304443ca81a1c522be4f33d0418b"
+        },
+        {
+          "path": "review/run-17-native-tail.jpg",
+          "sha256": "88ada146966c69be984ed7791e6c7f0ce457e721b59d7984a4d4e763e99a860f"
+        }
+      ]
+    },
+    {
+      "run": 18,
+      "videoSha256": "581e804fb58eab38d615a025066ceb4d78ee73fa79dd198c8613afb3e3f5f83d",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        116.081,
+        116.148
+      ],
+      "lastSavedVideoSeconds": 116.148,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-18-frames/0146.png",
+          "sha256": "f82c5f4210b0baa3dd2621537dfaab480af913e8f226dfc639ead2d0be83dce0"
+        },
+        {
+          "path": "review/run-18-frames/0147.png",
+          "sha256": "84b8d61f6b966cb51a9585e566c5c87f5935fb451ece26bda931c2dc8e4ffa28"
+        }
+      ]
+    },
+    {
+      "run": 19,
+      "videoSha256": "371492456224dad84eebeecc3c4e9613593b2484046d87a1c4adbf603f4b859b",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        149.33499999999998,
+        149.399
+      ],
+      "lastSavedVideoSeconds": 149.399,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-19-frames/0148.png",
+          "sha256": "331e0c91374428d1ed7b1c126dd5be7fc52c6bd70b88d4e33b5352d92b3a5c14"
+        },
+        {
+          "path": "review/run-19-frames/0149.png",
+          "sha256": "72cba6d98faab37722de40c479728ea0bd878c640a353c5ba9c3190c52ff24bc"
+        }
+      ]
+    },
+    {
+      "run": 20,
+      "videoSha256": "38949312268cce0f147266e5117d63d660b014d831366459ebfc09501e026bae",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        160.86499999999998,
+        160.932
+      ],
+      "lastSavedVideoSeconds": 160.932,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-20-frames/0148.png",
+          "sha256": "fb984aa74b72d877e0705fb493a3ad46ae1e34ed9cf1857674e1910234869957"
+        },
+        {
+          "path": "review/run-20-frames/0149.png",
+          "sha256": "09af9293cb77954390bbabed3210ca3496656d16436c69ab9ed6a697c2709b5e"
+        }
+      ]
+    },
+    {
+      "run": 21,
+      "videoSha256": "b730d88b375811df7caf6567d9bc0c9f1d4fd609509f45f1c7f721edaf4cfea5",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        167.364,
+        167.43
+      ],
+      "lastSavedVideoSeconds": 167.43,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-21-frames/0148.png",
+          "sha256": "4b0e113c9a4052bf1b080fee37f08dd595da8b21cbe1a53a909df1d494b3f1d6"
+        },
+        {
+          "path": "review/run-21-frames/0149.png",
+          "sha256": "66b52b7963680cd02fd517b259b06ea5fc850a46d55d0b777a9d9d53ec6c0a60"
+        }
+      ]
+    },
+    {
+      "run": 22,
+      "videoSha256": "26c0f835cf65ae9d857249dcc2c1eaecb95375562c2ee711a0612d02762b9101",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        156.526,
+        156.61
+      ],
+      "lastSavedVideoSeconds": 156.61,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-22-frames/0147.png",
+          "sha256": "cc35abe93c062345108c45b439597e559466db6f6f6c69e6383cf4b46cacb631"
+        },
+        {
+          "path": "review/run-22-frames/0148.png",
+          "sha256": "ea0400a25dea00c3d71190b1599cad330ccb885fea3b6123c8f2447f45522216"
+        }
+      ]
+    },
+    {
+      "run": 23,
+      "videoSha256": "3cc86e22b5401408a3e379384a64fdf7a93772694159101a1e3479dbb84ca2f2",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        179.533,
+        179.61599999999999
+      ],
+      "lastSavedVideoSeconds": 179.666,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-23-frames/0147.png",
+          "sha256": "29dc1ad001be78fefe6c0daa513b6e4ff6b314804ca0fba85d5579a0ebb7035f"
+        },
+        {
+          "path": "review/run-23-frames/0148.png",
+          "sha256": "873e100eac0fa5002bde9d520bf33ebc49764b3502f5d5238a10efdca4c851b1"
+        }
+      ]
+    },
+    {
+      "run": 24,
+      "videoSha256": "19235affbd3585110cc12589859a2cd8071deeb9eb4107a41047d4413781c943",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        173.202,
+        173.283
+      ],
+      "lastSavedVideoSeconds": 173.398,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-24-frames/0146.png",
+          "sha256": "46aadd64645010aa29170dfbdf8e28489039e8c8abb4a8796e6c9c1587faae74"
+        },
+        {
+          "path": "review/run-24-frames/0147.png",
+          "sha256": "c1eb130cc6b8e70d25524d96e569daca9b2c883998a77b4fcc6d05882e9aaf5e"
+        }
+      ]
+    },
+    {
+      "run": 25,
+      "videoSha256": "181a08ab5ab417feaa703c85af159ffa96bd02f389fbf2a5823594d48798702b",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        129.598,
+        129.66500000000002
+      ],
+      "lastSavedVideoSeconds": 129.66500000000002,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-25-frames/0148.png",
+          "sha256": "404b7fa30c00db00add44e636e8eaa55e7666c74fb4b12aa6e65d3433b996a7a"
+        },
+        {
+          "path": "review/run-25-frames/0149.png",
+          "sha256": "c51b3189747629a52ec2c914636a018c79424e05da7320c11cabc9417dd54f1b"
+        }
+      ]
+    },
+    {
+      "run": 26,
+      "videoSha256": "a99e411ddd7383df26755eee060b577ecf15507bad54a10e7f0d159340b5b02f",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        148.736,
+        148.815
+      ],
+      "lastSavedVideoSeconds": 148.932,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-26-frames/0147.png",
+          "sha256": "820afc3e4097a7df6007dd8ffca4be4833e27774135d3ba95ec11ad3ecb326af"
+        },
+        {
+          "path": "review/run-26-frames/0148.png",
+          "sha256": "ebd127fb44cc2de5e40f76e50694b548955da891e05e52af40d1615543d2a53e"
+        }
+      ]
+    },
+    {
+      "run": 27,
+      "videoSha256": "ac7561179f2613e536c31671681b37dae0976f37e162c2a13b97c343035c0bca",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        177.066,
+        177.131
+      ],
+      "lastSavedVideoSeconds": 177.131,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-27-frames/0147.png",
+          "sha256": "b6d8ea306e0c39582a2b11918cef7bc6aa69531d97eee315b27eb4060cf26def"
+        },
+        {
+          "path": "review/run-27-frames/0148.png",
+          "sha256": "ef737ce154c071927a34aa425c061f5e1985ef72662d835e01c2ded039152eff"
+        }
+      ]
+    },
+    {
+      "run": 28,
+      "videoSha256": "f2891aa22aa4734631ef2019380bbbc26e61935c59f6057facb22f9a610f053c",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        102.999,
+        103.066
+      ],
+      "lastSavedVideoSeconds": 103.133,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-28-frames/0147.png",
+          "sha256": "d21fca55e078f93a1189c6873f77cde300d0d3981e9be99bf1518a95e7842ab4"
+        },
+        {
+          "path": "review/run-28-frames/0148.png",
+          "sha256": "4f56c7a5680121237bec3729bdae486aa9380250ca954fdcc2a2bd99f55d90ac"
+        }
+      ]
+    },
+    {
+      "run": 29,
+      "videoSha256": "b9706ccfa17c9d49fb0cd3d9bc9f0be199bf53a15c48dd397629eabcd88b88a8",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        163.332,
+        163.399
+      ],
+      "lastSavedVideoSeconds": 163.399,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-29-frames/0148.png",
+          "sha256": "d23faf157c8e6a633b1b51e0f708c0fd21ecc36bd9219d6f0feaf1e446968425"
+        },
+        {
+          "path": "review/run-29-frames/0149.png",
+          "sha256": "d80a4e154e3c4b49ee7a669f2b83ff17d959fa0a2976821f64ef6ecc83fe27e2"
+        }
+      ]
+    },
+    {
+      "run": 30,
+      "videoSha256": "b471f0e52f891ea430fa06808658e7cf0500aed183058c35381e503fff1ff257",
+      "visuallyReviewed": true,
+      "lossIntervalVideoSeconds": [
+        165.137,
+        165.2
+      ],
+      "lastSavedVideoSeconds": 165.2,
+      "alignmentVerified": false,
+      "alignmentBoundSeconds": null,
+      "reviewedImages": [
+        {
+          "path": "review/run-30-frames/0149.png",
+          "sha256": "15c02c234b27fff04f1238daee518f77b89c7e262ce6be2501fff3334ca17726"
+        },
+        {
+          "path": "review/run-30-frames/0150.png",
+          "sha256": "2b6c0e5d801dab30cd043630662b137b24569b8ea49fe8852ff8b937b97275aa"
+        }
+      ]
+    }
+  ]
+}

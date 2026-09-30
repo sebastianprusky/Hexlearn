@@ -153,7 +153,7 @@ def main() -> None:
     is_eligible = eligible(metrics, total_runs)
     metadata = {
         "model": "PyTorch personal temporal survival ensemble",
-        "split": "32 development train / 8 development calibration / 10 locked future test" if total_runs >= 50 else "provisional chronological run split",
+        "split": "24 development train / 6 development calibration / 10 locked future test" if total_runs >= 40 else "provisional development diagnostics (not a locked-test result)",
         "objective": "failure within 5/10/15/20/30/45/60 active seconds",
         "references": list(references),
         "metrics": metrics,

@@ -46,8 +46,8 @@ export default async function ModelPage() {
       <section className="model-hero">
         <div>
           <p className="eyebrow">MODEL LAB / PERSONAL SURVIVAL</p>
-          <h1>Fifty clean runs.<br />One honest test.</h1>
-          <p>Hexlearn learns only from your quality-gated canvas captures. The final ten runs stay locked until a visual model is ready to prove it beats elapsed time and average duration.</p>
+          <h1>{collection.targetRuns} clean runs.<br />One honest test.</h1>
+          <p>Hexlearn learns only from your quality-gated canvas captures. Runs 31–40 test the initial model against elapsed time and average duration. Later play is saved for future training rounds.</p>
         </div>
         <div className={`live-model-state ${status.liveModel.artifactPresent ? "validated" : "experimental"}`}>
           <span>Live overlay</span>
@@ -68,20 +68,20 @@ export default async function ModelPage() {
           <strong>{collection.developmentRuns} / {collection.developmentTarget}</strong>
           <p>Chronological personal runs used for model fitting and run-grouped calibration.</p>
           <div className="lab-progress personal"><i style={{ width: `${Math.min(100, collection.developmentRuns / collection.developmentTarget * 100)}%` }} /></div>
-          <small>Experimental candidates refresh at 20, 25, 30, 35, and 40 runs.</small>
+          <small>Experimental candidates refresh at 20, 25, and 30 runs; final evaluation runs at 40.</small>
         </article>
         <article className="pipeline-card locked-card">
           <div className="pipeline-step"><span>02</span><b>Locked future test</b></div>
           <strong>{collection.lockedTestRuns} / {collection.lockedTestTarget}</strong>
-          <p>Runs 41–50 are never used to fit features, thresholds, calibration, or certainty tiers.</p>
+          <p>Runs 31–40 are never used to fit features, thresholds, calibration, or certainty tiers.</p>
           <div className="lab-progress locked"><i style={{ width: `${Math.min(100, collection.lockedTestRuns / collection.lockedTestTarget * 100)}%` }} /></div>
-          <small>{collection.phase === "locked_test" ? "Candidate frozen; keep playing with collection-only overlay." : collection.phase === "evaluation" ? "Locked test available for final gates." : "Unlocks after 40 usable runs."}</small>
+          <small>{collection.phase === "locked_test" ? "Development split fixed; keep playing with collection-only overlay." : collection.phase === "evaluation" ? "Locked test available for final gates." : "Unlocks after 30 usable runs."}</small>
         </article>
         <article className="pipeline-card">
           <div className="pipeline-step"><span>03</span><b>Local training job</b></div>
           <strong>{status.trainingJob.status === "running" ? "Training now" : status.trainingJob.status === "failed" ? "Needs attention" : status.trainingJob.status === "complete" ? `Built at ${status.trainingJob.usableRuns} runs` : "Waiting for milestone"}</strong>
           <p>{status.trainingJob.step ? `Current step: ${status.trainingJob.step}` : status.trainingJob.error || "scikit-learn runs first; PyTorch follows when installed."}</p>
-          <small>{latestCheckpoint ? `Checkpoint secured at ${latestCheckpoint.usableRuns} runs.` : "Full local checkpoints are created at runs 20, 40, and 50."}</small>
+          <small>{latestCheckpoint ? `Checkpoint secured at ${latestCheckpoint.usableRuns} runs.` : "Full local checkpoints are created at runs 20, 30, and 40."}</small>
         </article>
       </section>
 

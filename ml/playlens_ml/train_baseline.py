@@ -172,7 +172,7 @@ def main() -> None:
     )
     gates = promotion_gates(metrics, total_runs)
     is_eligible = eligible(metrics, total_runs)
-    split_label = "32 development train / 8 development calibration / 10 locked future test" if total_runs >= 50 else "provisional chronological run split"
+    split_label = "24 development train / 6 development calibration / 10 locked future test" if total_runs >= 40 else "provisional development diagnostics (not a locked-test result)"
     payload = {
         "model": "scikit-learn personal visual survival ensemble",
         "split": split_label,

@@ -92,13 +92,13 @@ class ProductLogicTests(unittest.TestCase):
 class ApiTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp_directory = tempfile.TemporaryDirectory()
-        data_dir = Path(self.temp_directory.name)
+        self.data_dir = Path(self.temp_directory.name)
         self.client = TestClient(
             create_app(
                 Settings(
-                    data_dir=data_dir,
-                    artifact_path=data_dir / "missing.joblib",
-                    artifacts_dir=data_dir / "artifacts",
+                    data_dir=self.data_dir,
+                    artifact_path=self.data_dir / "missing.joblib",
+                    artifacts_dir=self.data_dir / "artifacts",
                 )
             )
         )
@@ -174,9 +174,28 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(detail["predictions"], [])
         status = self.client.get("/api/v1/ml/status").json()
         self.assertEqual(status["personalCollection"]["usableRuns"], 1)
-        self.assertEqual(status["personalCollection"]["remainingRuns"], 49)
+        self.assertEqual(status["personalCollection"]["remainingRuns"], 39)
         self.assertEqual(status["personalCollection"]["cohortVersion"], "collection-v3")
         self.assertEqual(status["personalCollection"]["recentRuns"][0]["validFrameCount"], 40)
+
+    def test_jittered_capture_cadence_persists_every_valid_frame(self) -> None:
+        session_id = self.start_session()
+        base = int(time.time() * 1_000)
+        for index in range(40):
+            response = self.send_frame(session_id, base + index * 235, index * 235, index)
+            self.assertEqual(response.status_code, 200)
+
+        finished = self.client.post(
+            f"/api/v1/sessions/{session_id}/finish",
+            json={"reason": "game_over", "timestampMs": base + 9_400, "activeElapsedMs": 9_400},
+        )
+        self.assertEqual(finished.status_code, 200)
+        self.assertEqual(finished.json()["validFrameCount"], 40)
+        self.assertEqual(finished.json()["captureCoverage"], 1.0)
+        session_path = self.data_dir / "sessions" / session_id
+        self.assertEqual(len(list((session_path / "frames").glob("*.jpg"))), 40)
+        observations = (session_path / "observations.jsonl").read_text(encoding="utf-8").splitlines()
+        self.assertEqual(len(observations), 40)
 
     def test_non_game_over_and_short_runs_are_excluded(self) -> None:
         session_id = self.start_session()

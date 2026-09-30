@@ -21,16 +21,30 @@ class MlContractTests(unittest.TestCase):
         self.assertEqual(failure_targets(17), [0, 0, 0, 1, 1, 1, 1])
         self.assertEqual(failure_targets(75), [0, 0, 0, 0, 0, 0, 0])
 
-    def test_fifty_run_split_locks_last_ten_complete_runs(self) -> None:
-        session_ids = np.asarray([f"session-{index:02d}" for index in range(50) for _ in range(4)])
+    def test_forty_run_split_locks_last_ten_complete_runs(self) -> None:
+        session_ids = np.asarray([f"session-{index:02d}" for index in range(40) for _ in range(4)])
         split = session_split(session_ids)
         self.assertFalse(np.any(split.train & split.validation))
         self.assertFalse(np.any(split.train & split.test))
         self.assertFalse(np.any(split.validation & split.test))
-        self.assertEqual(len(set(session_ids[split.train])), 32)
-        self.assertEqual(len(set(session_ids[split.validation])), 8)
+        self.assertEqual(len(set(session_ids[split.train])), 24)
+        self.assertEqual(len(set(session_ids[split.validation])), 6)
         self.assertEqual(len(set(session_ids[split.test])), 10)
-        self.assertEqual(set(session_ids[split.test]), {f"session-{index:02d}" for index in range(40, 50)})
+        self.assertEqual(set(session_ids[split.test]), {f"session-{index:02d}" for index in range(30, 40)})
+
+    def test_future_runs_never_move_into_initial_development(self) -> None:
+        for count in (30, 31, 35, 39, 40, 50):
+            ids = np.asarray([f"session-{i:02d}" for i in range(count)])
+            split = session_split(ids)
+            self.assertEqual(set(ids[split.train]), set(ids[:24]))
+            self.assertEqual(set(ids[split.validation]), set(ids[24:30]))
+            if count > 30:
+                self.assertEqual(set(ids[split.test]), set(ids[30:40]))
+                self.assertFalse(np.any(split.test & split.validation))
+            else:
+                self.assertTrue(np.array_equal(split.test, split.validation))
+            if count > 40:
+                self.assertFalse(np.any((split.train | split.validation | split.test)[40:]))
 
     def test_seven_horizon_probabilities_are_monotonic(self) -> None:
         values = monotonic_probabilities(
@@ -50,10 +64,10 @@ class MlContractTests(unittest.TestCase):
             "elapsedFinal10Mae": 4.0,
             "latencyMsP95": 40.0,
         }
-        self.assertTrue(eligible(metrics, 50))
-        self.assertFalse(eligible(metrics, 49))
+        self.assertTrue(eligible(metrics, 40))
+        self.assertFalse(eligible(metrics, 39))
         metrics["brierImprovements"]["elapsed_time_only"] = 0.05
-        self.assertFalse(promotion_gates(metrics, 50)["brierVsElapsed"])
+        self.assertFalse(promotion_gates(metrics, 40)["brierVsElapsed"])
 
     def test_survival_evaluation_compares_time_and_probability_baselines(self) -> None:
         remaining = np.asarray([70.0, 50.0, 25.0, 15.0, 8.0, 3.0])

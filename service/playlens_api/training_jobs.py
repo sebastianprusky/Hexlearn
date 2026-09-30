@@ -12,7 +12,7 @@ from typing import Callable
 from .checkpoints import CHECKPOINT_MILESTONES, create_collection_checkpoint
 
 
-TRAINING_MILESTONES = {20, 25, 30, 35, 40, 50}
+from .collection_policy import TRAINING_MILESTONES
 
 
 def _now() -> str:

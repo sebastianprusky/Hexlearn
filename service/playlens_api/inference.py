@@ -9,6 +9,7 @@ from typing import Any
 import joblib
 import numpy as np
 
+from .collection_policy import PERSONAL_TARGET
 from .features import FEATURE_NAMES, FEATURE_SCHEMA_VERSION, aggregate_window
 
 
@@ -63,7 +64,6 @@ class RuntimeSession:
     previous_gray: np.ndarray | None = None
     probability_history: deque[np.ndarray] = field(default_factory=lambda: deque(maxlen=3))
     last_prediction_active_ms: int = 0
-    last_saved_active_ms: int = -250
     last_prediction: dict[str, Any] | None = None
     valid_frames: int = 0
     paused: bool = False
@@ -170,7 +170,7 @@ class Predictor:
                 "activeElapsedMs": active_elapsed_ms,
                 "status": "collecting",
                 "collectionRunNumber": runtime.collection_run_number,
-                "collectionTarget": 50,
+                "collectionTarget": PERSONAL_TARGET,
                 "modelSource": self.model_source,
                 "calibrated": False,
             }

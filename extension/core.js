@@ -59,7 +59,7 @@
       return {
         accepted: true,
         headline: "RUN ACCEPTED",
-        detail: `${Number(result.usableRuns) || 0} / ${Number(result.collectionTarget) || 50} usable${coverageText}`,
+        detail: `${Number(result.usableRuns) || 0} / ${Number(result.collectionTarget) || 40} usable${coverageText}`,
       };
     }
     const reason = String(result.qualityReason || "Run did not pass capture checks")

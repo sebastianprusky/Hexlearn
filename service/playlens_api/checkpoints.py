@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-CHECKPOINT_MILESTONES = {20, 40, 50}
+from .collection_policy import CHECKPOINT_MILESTONES
 
 
 def create_collection_checkpoint(data_dir: Path, artifacts_dir: Path, usable_runs: int) -> Path | None:

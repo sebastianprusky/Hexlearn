@@ -15,6 +15,7 @@ from playlens_api.features import (
     extract_jpeg_features,
 )
 from playlens_api.training_status import legacy_run_quality
+from playlens_api.collection_policy import PERSONAL_TARGET, DEVELOPMENT_RUNS, LOCKED_TEST_RUNS
 
 from .common import DATASET_DIR, HORIZONS_SECONDS, ROOT
 
@@ -91,7 +92,7 @@ def personal_runs(data_dir: Path) -> list[dict]:
                     "resumePoints": resume_points.get(session_id, []),
                 }
             )
-    return runs[:50]
+    return runs[:PERSONAL_TARGET]
 
 
 def main() -> None:
@@ -190,6 +191,8 @@ def main() -> None:
 
     if not windows:
         raise SystemExit(f"No usable personal sessions found under {data_dir / 'sessions'}")
+    if len(set(session_ids)) != len(runs):
+        raise SystemExit("A cohort run has no usable windows; refusing to shift the chronological split")
     DATASET_DIR.mkdir(parents=True, exist_ok=True)
     feature_matrix = np.vstack(aggregates)
     np.savez_compressed(
@@ -223,8 +226,8 @@ def main() -> None:
         "source": "personal_clean_runs_only",
         "featureSchemaVersion": FEATURE_SCHEMA_VERSION,
         "featureCount": len(FEATURE_NAMES),
-        "developmentRuns": min(40, len(set(session_ids))),
-        "lockedTestRuns": max(0, min(10, len(set(session_ids)) - 40)),
+        "developmentRuns": min(DEVELOPMENT_RUNS, len(set(session_ids))),
+        "lockedTestRuns": max(0, min(LOCKED_TEST_RUNS, len(set(session_ids)) - DEVELOPMENT_RUNS)),
     }
     (DATASET_DIR / "personal_summary.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"

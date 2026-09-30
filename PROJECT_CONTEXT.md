@@ -21,7 +21,7 @@ The portfolio claim must remain evidence-based:
 
 Initial data collection shows no experimental forecast:
 
-- `CAPTURING RUN 12 / 50`
+- `CAPTURING RUN 12 / 40`
 - `PAUSED`
 - An explicit capture or validity error
 
@@ -77,11 +77,14 @@ Models:
 
 ## Data split and promotion
 
-- The first 50 usable personal runs are chronological.
-- Runs 1–32 fit models; runs 33–40 calibrate probabilities and certainty.
-- Runs 41–50 are locked future tests and never influence fitting or selection.
-- Experimental jobs run at 20, 25, 30, 35, and 40 runs; the final gate runs at
-  50. The overlay remains collection-only throughout.
+- The initial 40 usable personal runs are chronological.
+- Runs 1–24 fit models; runs 25–30 calibrate probabilities and certainty.
+- Runs 31–40 are locked future tests and never influence fitting or selection.
+- Experimental jobs run at 20, 25, and 30 runs; the final gate runs at 40.
+  At run 30, calibration metrics are provisional diagnostics, not test evidence.
+- No automatic jobs run during the locked-test collection (31–39).
+- Later gameplay remains recorded for future training rounds. The initial
+  pipeline stays capped at 40; future models need a separately defined split.
 - Bot and instrumented runs are retained only for pipeline smoke tests.
 
 All promotion gates must pass:
@@ -112,7 +115,116 @@ Model Lab. More data cannot be described as success by itself.
   graph, data-quality reasons, and Model Lab.
 - SQLite, frames, recordings, jobs, and artifacts remain local.
 
-## Current status — 2026-08-30
+## Current status — 2026-09-30
+
+### Clear measurement experiment — 2026-09-30
+
+- Direction: validate one pixel measurement, then run one fixed feature comparison, then consider an independent future test only if all original forecast gates pass.
+- Added separate offline `clear_measurement` package. A frozen 12-FPS clear-flash detector passed a reserved clip check: 23/26 confirmable clears, zero false detections, and 100% supported scored frames across 60 scored seconds. Raw labels were written before detector predictions were displayed. These are assistant labels on new segments of previously used games.
+- The 4-FPS development check missed brief flashes; sampling was amended to 12 FPS before protocol/source freeze. No threshold changes after reserved review.
+- Completed one fixed ablation on 56,364 frames from runs 1–30: eight recent-clear features added to the retained 80-feature pixel representation, compared with unchanged features in the two original fixed families. Historical runs 31–40 remain excluded.
+- On identical supported windows, adding clears improved the tree by only 0.00032 Brier and 0.036 seconds of last-minute error; descriptive paired intervals include no improvement. The clear tree scores Brier 0.06660 and MAE 11.140s, versus best time-baseline values 0.06171 and 10.610s. Its false-alert rate is 0.331/minute; final-ten-second error is 14.611s. Both clear candidates fail six of eight original gates.
+- Coverage is 3,797/4,127 development windows (92.0%), with 2,016 supported evaluation windows and a worst evaluation-game coverage of 78.1%. Some evaluation games retain only 1–2 final-ten-second windows. Do not compare these scores directly with older reports scored on more windows.
+- Decision: close this experiment; improve extraction first. Keep the clear detector as an experimental measurement tool, without replacing the forecasting representation or promoting a model. Four inspected failures reproduce uncertain gray-boundary fits during animation/occlusion; current recovery returns immediately on invalid native geometry.
+- 64 focused tests pass; frozen measurement hashes and eleven original artifact hashes remain unchanged. Results are kept under `artifacts/experiments/clear-measurement-v1`.
+
+### Tracking repair follow-up — 2026-09-30
+
+- Added offline `board_tracking` experiment; report at `artifacts/experiments/board-tracking-v1/REPORT.md`.
+- Reviewed 12 clips with explicit incoming/clear labels and all 33 repaired geometry frames. Original 60 still geometry/color outputs remain identical to v3; incoming target-color agreement is 56/60, and conservative repair geometry/color review is 30/33. These are assistant judgments, not independent labels.
+- Current-pixel center refits and bounded prior-geometry recovery increased supported windows from 3,888 to 3,970 of 4,127 (96.2%). Worst evaluation-game coverage remains 87.9%, below the 95% per-game requirement.
+- The pixel-repaired tree is effectively tied with the prior compact logistic on identical windows: Brier 0.07143 vs 0.07206, last-minute MAE 11.716s vs 11.719s; paired intervals include no improvement. On all supported windows it scores Brier 0.07143, MAE 11.665s, final-10s MAE 13.622s and 0.313 false alerts/minute. No candidate passes all gates.
+- Stricter motion/clear confirmation removed five false clear detections but matched only 5 of 13 confirmable reviewed clears. It worsened forecasting and is rejected as a replacement; keep the prior motion representation as the reference.
+- Four new feature/family combinations were examined with unchanged fixed settings (24 distinct combinations across the development program). No runs 31–40, live promotion, new collection or model search expansion.
+- All 45 board tests pass. Eleven original dataset/model/report artifacts still match archived hashes.
+
+
+- The user authorized continued pixel-only improvement using clearer existing
+  replays, including a possible future need for higher-resolution live capture.
+  Native recordings are 2940x1602; the new offline extractor decodes at 960x524.
+- Native extraction and crowded-board recovery are implemented in `board_v2`
+  and `board_v3`. Conservative review confirms 55/60 stills, with twelve clips
+  and twelve additional crowded-board examples inspected. Resize/letterbox
+  checks pass the review threshold. Sixty-six extra timing checks support a
+  conservative 0.5-second feature delay; original active-time labels are reused.
+- Native v3 supports 3,888/4,127 eligible development windows (94.2%); the lowest
+  evaluation-game coverage is 86.3%, below the required 95%. A core-ratio scale
+  variant reduced coverage and was rejected before model fitting.
+- Tested rotation-invariant features, adjacent-frame speed/activity estimates,
+  and compact speed/crowding/activity models using the same fixed logistic/tree
+  settings and three chronological folds. Twenty distinct development pairs
+  were evaluated; no hyperparameter search and no use of runs 31–40 occurred.
+- The best development result is `board-compact-v1/speed_board_activity_logistic`:
+  Brier 0.07192 and last-minute MAE 11.69 s, versus average duration 0.08396 and
+  12.78 s. Stronger elapsed-time baselines remain better (best Brier 0.06694;
+  best time error 11.16 s). Descriptive paired intervals include no improvement
+  over average duration. No candidate passes all screening requirements.
+- Best-candidate false alerts are 0.329 per observed active minute (cap 0.2),
+  final-ten-second error is 16.16 s (best time baseline 9.53 s), and per-game
+  coverage fails. Timely recall of 15/15 is not a success claim because repeated
+  onsets, false alarms and unsupported intervals remain material problems.
+- The complete report is `artifacts/experiments/board-compact-v1/REPORT.md`;
+  reproduction instructions are `ml/playlens_ml/board_compact/README.md`.
+  Thirty-six board-experiment tests pass. Original datasets, models, job state
+  and evaluation reports match archived bytes/hashes. Live inference, API,
+  extension and dashboard behavior were not changed by this offline work.
+
+### Earlier extraction checkpoint — 2026-09-30
+
+- The requested bounded pixel-only board experiment is implemented under
+  `ml/playlens_ml/board_experiment/` and stopped at its extraction checkpoint.
+  Conservative visual review confirmed 25/60 sampled frames (41.7%), below the
+  required 90%. Only 329/4,127 eligible development windows (8.0%) retained eight
+  seconds of valid continuous extraction; one game had zero valid windows.
+- The gray hexagon generally localizes, but radial connectivity confuses inner
+  and outer colors and loses assignments during rotation. Letterbox checks kept
+  lane colors identical on 57/60 frames; resizing was less stable. These results
+  diagnose this extractor, not a fundamental limit on visual prediction.
+- Real model fitting was blocked as specified. The six-candidate evaluation,
+  four time baselines, persistent-alert metrics, coverage gates, and conditional
+  offline candidate freeze are implemented and tested with synthetic data.
+  Fifteen new tests pass, including a complete synthetic comparison. Original
+  datasets, model bundles, and evaluation reports match their prior hashes or
+  archived bytes. No production inference, capture, API, or UI changed.
+- Reproduction instructions are in the experimental package README; local
+  review images, clips, decisions, cache, dataset, and final report are under
+  `artifacts/experiments/board-features-v1/`. The report recommends improving
+  extraction before any new model experiment or further gameplay collection.
+
+- Initial collection and both training jobs completed at 40 accepted runs.
+  Neither original candidate passed all promotion gates; live forecasts remain
+  disabled.
+- An offline audit compared ten configurations in three chronological folds
+  using only runs 1–30. Visual-only candidates did not demonstrate a consistent
+  advantage over stronger time baselines. Adding board features to a matched
+  elapsed-time tree changed mean time error from 11.13 s to 11.11 s; its possible
+  final-ten-second benefit remains uncertain.
+- The original linear candidate saturates near 100% failure probability on
+  runs 39–40, alongside large shifts in image-wide appearance features. Prioritize
+  pixel-based board normalization and color/clear/incoming-block features before
+  more bulk collection. Matrix-multiplication warnings reproduced with finite
+  outputs agreeing with elementwise computation within 1e-15; warning removal
+  alone is not an accuracy fix.
+- Original reports and model files are archived locally under
+  `artifacts/experiments/development-audit-2026-09-30/original/`. The audit report
+  is `artifacts/experiments/development-audit-2026-09-30/REPORT.md`; reproducible
+  commands are `playlens_ml.development_audit` and
+  `playlens_ml.audit_original_candidate`. These do not promote models.
+- Original test results have now informed diagnosis. Revisions motivated by
+  these findings need a newly defined prospective test. The hybrid experiment
+  does not change the visual-only production input contract.
+
+### Historical status — 2026-09-29
+
+- The user reduced initial collection to 40 runs; 25 accepted runs and a
+  completed 25-run training job were observed before this change.
+- Current policy is 24 fit / 6 calibration / 10 future test, with checkpoints
+  at 20, 30, and 40. Promotion quality requirements are unchanged.
+- Captures after 40 are preserved, but automatic continual retraining is not
+  enabled. Training on a test run retires it as independent test evidence for
+  the newly trained version.
+
+### Historical status — 2026-09-04
 
 - The v3 pause-aware extension, active-time API/database migration, personal
   dataset builder, scikit-learn/PyTorch survival training, automatic milestone
@@ -156,14 +268,39 @@ Model Lab. More data cannot be described as success by itself.
 - Old v2 bot artifacts remain historical and cannot load as a v3 live model.
 - No personal v3 model has been trained or promoted yet. The live experience is
   intentionally collection-only.
-- Three usable personal runs are currently accepted, producing 417 eight-second
-  training windows under the `hextris-stack-v2` feature schema. Forty-seven
-  usable runs remain before the locked evaluation and promotion decision.
+- Eleven usable personal runs are currently accepted, producing 1,247
+  eight-second training windows under the `hextris-stack-v2` feature schema.
+  Thirty-nine usable runs remain before the locked evaluation and promotion
+  decision.
+- The local controller now detects game over from Hextris's visible score
+  container instead of its always-rendered wrapper, so the start screen no
+  longer blocks Play-button run registration.
+- Future runs persist every valid 4 FPS frame and calculate coverage from the
+  saved JPEGs. This closes a timing-jitter gap that made three accepted runs
+  contribute fewer dense eight-second windows than their receipts implied.
 - The source repository is published as Hexlearn; local gameplay frames,
   recordings, SQLite data, checkpoints, and model artifacts are ignored and
   remain on the user's machine.
 
 ## Decisions
+
+- 2026-09-30: The frozen clear measurement passed, but its completed fixed forecasting comparison showed no reliable incremental benefit and no qualifying candidate. Stop this experiment. Any further work should first address geometry continuity on crowded late-game frames using a separate measurement protocol; no broader model search, new gameplay or live promotion.
+
+- 2026-09-30 tracking follow-up: retain causal pixel geometry/incoming fixes for research; reject strict activity confirmation as a forecasting replacement. Treat the tiny common-window gain as inconclusive and keep all original promotion gates.
+
+- 2026-09-30: User explicitly prioritized the strongest pixel-only approach using
+  native replay pixels. Continued targeted feature experiments with fixed model
+  settings; retained the 15-second warning objective and all screening gates.
+  Keep every failed/rejected variant as development evidence. No new prospective
+  cohort or live promotion is justified by the current results.
+
+- 2026-09-30: At the user's request, keep the next experiment offline and
+  pixel-only, retain the 15-second objective, and stop before real training when
+  extraction review is below 90%. The first board extractor failed this gate;
+  no parameter search or additional collection followed.
+
+- 2026-09-29: Reduced initial target to 40 at user request, retaining ten
+  future test runs and all promotion gates. Later captures stay available.
 
 - 2026-08-29: Made personal clean-copy runs the only model-development and
   evaluation source; bots became smoke-test-only.
@@ -181,8 +318,35 @@ Model Lab. More data cannot be described as success by itself.
   preserving explicit opt-in and the extension-compatible product architecture.
 - 2026-08-30: Made controller ownership cross-world and quarantined simultaneous
   duplicate captures so neither can contaminate personal fitting.
+- 2026-09-04: Made persisted frames authoritative for capture coverage and
+  removed the redundant server-side cadence gate; client-side sampling remains
+  fixed at 4 FPS.
 
 ## Change log
+
+- 2026-09-30: Completed causal clear-flash detection, annotation with predictions hidden, frozen measurement evaluation and the fixed forecasting ablation. Measurement passed (23/26 clears, zero false detections); forecasting improvement was negligible with intervals spanning zero. No candidate qualifies. Report: `artifacts/experiments/clear-measurement-v1/REPORT.md`; 64 tests pass and original artifacts remain intact.
+
+- 2026-09-30: added reviewed tracking repair, explicit clip annotations, common-window ablations, all-supported evaluation, prediction traces and nine regression tests under `board_tracking`; production remains unchanged.
+
+- 2026-09-30: Added native replay decoding/alignment, crowded-board recovery,
+  conservative review, rotation-invariant summaries, causal speed/activity
+  estimates, compact model ablations, out-of-fold prediction export, and a
+  consolidated report. Improved development results over average duration but
+  did not clear stronger time baselines or reliability gates.
+
+- 2026-09-30: Implemented the isolated board-feature experiment, deterministic
+  extraction review, resize/letterbox checks, per-frame cache, continuous-history
+  dataset, calibrated candidate/reference comparison, persistent-alert metrics,
+  screening gates, report command, and fifteen tests. Executed extraction on all
+  30 development games and issued an extraction-first stop decision.
+
+- 2026-09-30: Added an offline development comparison and original-candidate
+  postmortem, with tests for future-run exclusion, chronological folds, and
+  warning timing. Preserved the first experiment's reports and models; made no
+  production inference or promotion changes.
+
+- 2026-09-29: Updated API, overlay, dataset, split, milestone jobs, checkpoints,
+  and Model Lab to the initial 40-run protocol; added split boundary tests.
 
 - 2026-08-29: Added explicit paused/active lifecycle events, recorder suspension,
   active timestamps, resume warmup, and visible-UI game-over confirmation.
@@ -216,6 +380,10 @@ Model Lab. More data cannot be described as success by itself.
   Chrome toolbar action or a motion threshold.
 - 2026-08-30: Added navigation/BFCache lifecycle reset so leaving and returning
   cannot strand an armed controller without an open session.
+- 2026-09-03: Fixed local Play-button run registration by distinguishing the
+  always-rendered game-over wrapper from its game-over-only score content.
+- 2026-09-04: Fixed jitter-related frame persistence loss, capped collection
+  receipts at 100% coverage, and added a 235 ms cadence regression test.
 - 2026-08-30: Replaced the overly broad inward-weighted radial mask with an
   observed central-stack mask, outward pressure, outer danger-band occupancy,
   and six-sector stack reach. Raw 4 FPS JPEGs remain the retraining source, so
@@ -224,14 +392,26 @@ Model Lab. More data cannot be described as success by itself.
   and model artifacts; live inference rejects stale feature dimensions instead
   of failing or silently mixing extractors.
 
-## Next milestone
+## Current direction and stopping point
 
-1. Refresh the local game; its 0.6.4 controller arms automatically.
-2. Complete a three-run pilot: normal, in-game pause, and hidden-tab pause.
-   Confirm acceptance, coverage, pause count, and recording status in Model Lab.
-3. Continue to 20 official v3 runs for the first experimental candidate, then
-   continue to 40 without exposing predictions.
-4. Freeze the 40-run candidate and collect ten untouched future test runs.
-5. Evaluate both model families at run 50 and promote only if every gate passes.
-6. If held back, inspect failure bands, class balance, certainty, and visual
-   features before deciding whether to collect more runs or revise the model.
+The user approved a separate pixel-only imminent-danger experiment, targeting
+warnings 2–5 active seconds before loss. Its five-second target is primary;
+three seconds is secondary. The original long-horizon and clear-measurement
+results remain historical evidence, with no qualifying candidate.
+
+The imminent-loss experiment is now closed at its mandatory timing gate:
+
+- Run 5: a 0.342-second interval across visible loss, above the 0.25-second limit.
+- Runs 14 and 17: no visible loss transition before the saved video ends.
+- Full-stream decoding confirms the same ending pixels as the review decoder.
+
+All 30 ending boundary pairs were visually reviewed. End/pause alignment,
+near-loss extraction validation and forecasting were not completed after the
+timing failure. No games were removed to make the experiment pass, no models
+were trained, and no new gameplay is requested. This is a recording/timing
+limitation, not proof that short-horizon prediction cannot work.
+
+See `ml/playlens_ml/imminent_loss/README.md` for the approved protocol and
+`RESULTS.md` in that directory for the report. Do not resume model tuning or
+claim a validated warning system from these results. Any later study needs a
+separate explicit scope; the current experiment does not enable live warnings.

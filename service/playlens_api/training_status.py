@@ -7,9 +7,7 @@ from pathlib import Path
 from typing import Any
 
 
-PERSONAL_TARGET = 50
-DEVELOPMENT_RUNS = 40
-LOCKED_TEST_RUNS = 10
+from .collection_policy import PERSONAL_TARGET, DEVELOPMENT_RUNS, LOCKED_TEST_RUNS
 HORIZONS_SECONDS = [5, 10, 15, 20, 30, 45, 60]
 
 
